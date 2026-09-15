@@ -1,4 +1,4 @@
-# RVC-v3-UI — Voice Conversion Service
+# RVC-v3 — Voice Conversion Service
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -9,6 +9,36 @@ and bounded caches for repeated requests.
 
 **“v3” names this service release. Voice checkpoints remain RVC v1/v2.**
 This repository provides a CLI and API backend; it does not include the v2 Gradio UI.
+
+## Listen: before and after
+
+Each player runs through **original recording → male target p226 → female target
+p231**, with the current voice and pitch setting shown on screen. These are the
+actual English-trained RVC v2 conversions from the WAV examples below.
+
+### Male narration
+
+[Play the male comparison](examples/previews/male-comparison.mp4)
+
+Original at **0:00**, male target at **0:15**, female target at **0:30**.
+
+### Female narration
+
+[Play the female comparison](examples/previews/female-comparison.mp4)
+
+Original at **0:00**, male target at **0:14**, female target at **0:28**.
+
+| Original recording | Male target p226 | Female target p231 |
+| --- | --- | --- |
+| [Male source WAV](examples/audio/male.wav) | [Converted WAV · 0 semitones](examples/english/male-to-vctk226.wav) | [Converted WAV · +8 semitones](examples/english/male-to-vctk231.wav) |
+| [Female source WAV](examples/audio/female.wav) | [Converted WAV · −8 semitones](examples/english/female-to-vctk226.wav) | [Converted WAV · 0 semitones](examples/english/female-to-vctk231.wav) |
+
+Inputs: LibriSpeech narration by **Garth Comira** and **Heather Barnett**, CC BY 4.0.
+Converted segments are modified recordings using **Nekochu's VCTK p226/p231**
+models, RMVPE and retrieval at 0.5. The players use AAC audio for browser playback;
+the WAV links retain the original example files. See [source credits](examples/README.md),
+[model credits and conversion settings](examples/ENGLISH.md), and
+[preview reproduction](examples/previews/README.md).
 
 ## Features
 

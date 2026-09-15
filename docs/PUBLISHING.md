@@ -10,12 +10,12 @@ outputs in `examples/converted/`, plus four English-trained VCTK outputs in
 `python scripts/package_source.py` creates `dist/rvc-v3-source.zip`
 using an allowlist, suitable for a new repository or source release.
 
-GitHub destination: `PseudoRAM/RVC-v3-UI`. From the
+GitHub destination: `PseudoRAM/RVC-v3`. From the
 prepared local repository after reviewing your commit:
 
 ```sh
 git branch -M main
-git remote add origin https://github.com/PseudoRAM/RVC-v3-UI.git
+git remote add origin https://github.com/PseudoRAM/RVC-v3.git
 git push -u origin main
 ```
 

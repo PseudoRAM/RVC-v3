@@ -1,0 +1,36 @@
+{
+  "male-comparison.mp4": [
+    {
+      "start_seconds": 0.0,
+      "title": "Original recording",
+      "audio": "examples/audio/male.wav"
+    },
+    {
+      "start_seconds": 14.84,
+      "title": "Converted / Male target p226",
+      "audio": "examples/english/male-to-vctk226.wav"
+    },
+    {
+      "start_seconds": 29.66,
+      "title": "Converted / Female target p231",
+      "audio": "examples/english/male-to-vctk231.wav"
+    }
+  ],
+  "female-comparison.mp4": [
+    {
+      "start_seconds": 0.0,
+      "title": "Original recording",
+      "audio": "examples/audio/female.wav"
+    },
+    {
+      "start_seconds": 13.91,
+      "title": "Converted / Male target p226",
+      "audio": "examples/english/female-to-vctk226.wav"
+    },
+    {
+      "start_seconds": 27.81,
+      "title": "Converted / Female target p231",
+      "audio": "examples/english/female-to-vctk231.wav"
+    }
+  ]
+}
