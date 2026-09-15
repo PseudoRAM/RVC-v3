@@ -1,0 +1,121 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.0.1+cu118",
+  "setup_seconds": 2.5955532999999997,
+  "source_stats": {
+    "male": {
+      "duration": 14.84,
+      "sample_rate": 16000,
+      "median_voiced_f0_hz": 76.887442550202,
+      "peak": 0.797149658203125
+    },
+    "female": {
+      "duration": 13.9100625,
+      "sample_rate": 16000,
+      "median_voiced_f0_hz": 212.36900082961785,
+      "peak": 0.42431640625
+    }
+  },
+  "cases": [
+    {
+      "name": "female-zero-no-index",
+      "source": "female",
+      "voice": "Sandy",
+      "pitch": 0,
+      "use_index": false,
+      "warm_median_seconds": 0.21547335000000034,
+      "all_seconds": [
+        1.2185794000000003,
+        0.23754030000000004,
+        0.21184920000000051,
+        0.2112468999999999,
+        0.21909750000000017
+      ],
+      "output_sample_rate": 40000,
+      "output_duration": 13.9,
+      "finite": true,
+      "rms": 0.05048464674642384,
+      "clipped_samples": 0
+    },
+    {
+      "name": "female-zero-index",
+      "source": "female",
+      "voice": "Sandy",
+      "pitch": 0,
+      "use_index": true,
+      "warm_median_seconds": 0.3153182000000001,
+      "all_seconds": [
+        0.3571484000000007,
+        0.31653339999999996,
+        0.3173861000000002,
+        0.31410300000000024,
+        0.31283490000000036
+      ],
+      "output_sample_rate": 40000,
+      "output_duration": 13.9,
+      "finite": true,
+      "rms": 0.05154096987207418,
+      "clipped_samples": 0
+    },
+    {
+      "name": "female-plus3-index",
+      "source": "female",
+      "voice": "Sandy",
+      "pitch": 3,
+      "use_index": true,
+      "warm_median_seconds": 0.3149374499999995,
+      "all_seconds": [
+        0.3125365000000002,
+        0.3197127999999996,
+        0.30327710000000074,
+        0.31016209999999944,
+        0.36143459999999905
+      ],
+      "output_sample_rate": 40000,
+      "output_duration": 13.9,
+      "finite": true,
+      "rms": 0.05193203593379237,
+      "clipped_samples": 0
+    },
+    {
+      "name": "male-to-female-plus8-index",
+      "source": "male",
+      "voice": "Sandy",
+      "pitch": 8,
+      "use_index": true,
+      "warm_median_seconds": 0.3213657999999997,
+      "all_seconds": [
+        0.47765710000000006,
+        0.3141008000000003,
+        0.3395171000000001,
+        0.31148300000000084,
+        0.3286307999999991
+      ],
+      "output_sample_rate": 40000,
+      "output_duration": 14.82,
+      "finite": true,
+      "rms": 0.10675638753520347,
+      "clipped_samples": 0
+    },
+    {
+      "name": "male-zero-index",
+      "source": "male",
+      "voice": "Rogan",
+      "pitch": 0,
+      "use_index": true,
+      "warm_median_seconds": 0.4704986,
+      "all_seconds": [
+        0.8132526000000002,
+        0.4793757999999997,
+        0.4708634000000007,
+        0.4670007999999992,
+        0.47013379999999927
+      ],
+      "output_sample_rate": 48000,
+      "output_duration": 14.82,
+      "finite": true,
+      "rms": 0.08747479112694485,
+      "clipped_samples": 0
+    }
+  ]
+}
