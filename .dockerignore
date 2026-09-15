@@ -16,3 +16,8 @@ dist
 *.key
 *.log
 .github
+# Voice assets require explicit inclusion after reviewing their rights.
+rvc_models/**
+!rvc_models/hubert_base.pt
+!rvc_models/rmvpe.pt
+!rvc_models/README.md

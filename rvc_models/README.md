@@ -21,4 +21,6 @@ Each voice must have exactly one `.pth` and at most one `.index`. The directory
 name is the `rvc_model` API input / `--voice` CLI argument. Nested ZIP folders are
 supported for custom downloads. Voice weights and indexes are not part of the
 source release; supply models that you have permission to use. Local voice files
-are excluded from Git but included by Cog when building from this directory.
+are excluded from Git and container builds by default. See
+[voice asset research](../docs/VOICE_ASSETS.md) and the
+[publishing guide](../docs/PUBLISHING.md) before explicitly including a voice.

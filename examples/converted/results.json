@@ -1,0 +1,98 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.0.1+cu118",
+  "cases": [
+    {
+      "source": "female",
+      "voice": "AisoHowatto",
+      "version": "v2",
+      "f0": false,
+      "pitch_change": 0,
+      "use_index": false,
+      "output": "examples/converted/female-to-aisohowatto.wav",
+      "checkpoint_sha256": "8fc32652b8ec472615af3f6661a50a195dd54990e0f517bd0dbd66db59813146",
+      "input_sha256": "1dd8150dc980db2879b7ddcc51a0eaf3e42e59d44d2d6a63f247426680e2bd95",
+      "sample_rate": 40000,
+      "duration_seconds": 13.9,
+      "peak": 0.425750732421875,
+      "clipped_samples": 0,
+      "all_seconds": [
+        1.1398604999999993,
+        0.1531028000000001,
+        0.1551456,
+        0.17142929999999978,
+        0.1624510000000008
+      ],
+      "warm_median_seconds": 0.1587983000000004
+    },
+    {
+      "source": "male",
+      "voice": "AisoHowatto",
+      "version": "v2",
+      "f0": false,
+      "pitch_change": 0,
+      "use_index": false,
+      "output": "examples/converted/male-to-aisohowatto.wav",
+      "checkpoint_sha256": "8fc32652b8ec472615af3f6661a50a195dd54990e0f517bd0dbd66db59813146",
+      "input_sha256": "aac819c87e30d0b88bdfe57b32efd8cc1485ed2c5e753affb4b7df21ba6519ee",
+      "sample_rate": 40000,
+      "duration_seconds": 14.82,
+      "peak": 0.845306396484375,
+      "clipped_samples": 0,
+      "all_seconds": [
+        0.22728269999999995,
+        0.16923460000000023,
+        0.1557240000000002,
+        0.1605660999999996,
+        0.16520029999999952
+      ],
+      "warm_median_seconds": 0.16288319999999956
+    },
+    {
+      "source": "female",
+      "voice": "AisoSittori",
+      "version": "v2",
+      "f0": false,
+      "pitch_change": 0,
+      "use_index": false,
+      "output": "examples/converted/female-to-aisosittori.wav",
+      "checkpoint_sha256": "7696d020ced92d9d5502ca40943ee7d35120988a92b70909fa099fc4e24a8477",
+      "input_sha256": "1dd8150dc980db2879b7ddcc51a0eaf3e42e59d44d2d6a63f247426680e2bd95",
+      "sample_rate": 40000,
+      "duration_seconds": 13.9,
+      "peak": 0.3636474609375,
+      "clipped_samples": 0,
+      "all_seconds": [
+        0.4196005000000005,
+        0.1644489,
+        0.15435579999999938,
+        0.16025329999999993,
+        0.16268629999999984
+      ],
+      "warm_median_seconds": 0.16146979999999989
+    },
+    {
+      "source": "male",
+      "voice": "AisoSittori",
+      "version": "v2",
+      "f0": false,
+      "pitch_change": 0,
+      "use_index": false,
+      "output": "examples/converted/male-to-aisosittori.wav",
+      "checkpoint_sha256": "7696d020ced92d9d5502ca40943ee7d35120988a92b70909fa099fc4e24a8477",
+      "input_sha256": "aac819c87e30d0b88bdfe57b32efd8cc1485ed2c5e753affb4b7df21ba6519ee",
+      "sample_rate": 40000,
+      "duration_seconds": 14.82,
+      "peak": 0.6929931640625,
+      "clipped_samples": 0,
+      "all_seconds": [
+        0.15509979999999857,
+        0.15508529999999965,
+        0.1562587999999998,
+        0.16067740000000086,
+        0.16593909999999923
+      ],
+      "warm_median_seconds": 0.15846810000000033
+    }
+  ]
+}

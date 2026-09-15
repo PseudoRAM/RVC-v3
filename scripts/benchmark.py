@@ -12,7 +12,7 @@ from service import VoiceService
 
 parser = argparse.ArgumentParser()
 parser.add_argument("audio", type=Path)
-parser.add_argument("--voice", default="Rogan")
+parser.add_argument("--voice", required=True, help="Authorized local voice directory")
 parser.add_argument("--runs", type=int, default=10)
 args = parser.parse_args()
 if args.runs < 2:

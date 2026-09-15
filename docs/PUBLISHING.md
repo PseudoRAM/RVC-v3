@@ -3,20 +3,22 @@
 ## GitHub
 
 The prepared repository contains code, documentation and dependency-free tests.
-Model weights, input/output audio, caches, environments and private credentials
-are ignored. `python scripts/package_source.py` creates `dist/rvc-v3-source.zip`
+Model weights, scratch generated audio, caches, environments and private credentials
+are ignored. Two attributed input WAVs in `examples/audio/` and four selected AISO
+outputs in `examples/converted/` are available for Git.
+`python scripts/package_source.py` creates `dist/rvc-v3-source.zip`
 using an allowlist, suitable for a new repository or source release.
 
-Create an empty GitHub repository, for example `PseudoRAM/RVC-v3`. Then, from the
+GitHub destination: `PseudoRAM/RVC-v3-UI`. From the
 prepared local repository after reviewing your commit:
 
 ```sh
 git branch -M main
-git remote add origin https://github.com/PseudoRAM/RVC-v3.git
+git remote add origin https://github.com/PseudoRAM/RVC-v3-UI.git
 git push -u origin main
 ```
 
-The name above is a suggested destination, not an existing/published repository.
+The commands above describe the initial remote setup; skip adding it if already configured.
 The included GitHub Actions workflow runs unit tests and syntax checks on Linux
 and Windows. It does not claim GPU, audio-quality, or container validation.
 
@@ -24,6 +26,18 @@ and Windows. It does not claim GPU, audio-quality, or container validation.
 
 1. Install Docker, NVIDIA GPU support and [Cog](https://github.com/replicate/cog).
 2. Run `python scripts/download_models.py` and provision authorized voice weights.
+   Voice directories are excluded from the image by default. For a voice whose
+   model, source and speaker permissions cover your deployment, append these exact
+   exceptions to `.dockerignore` (replace `MyVoice` with its directory name):
+
+   ```text
+   !rvc_models/MyVoice/
+   !rvc_models/MyVoice/**
+   ```
+
+   Keep its license, attribution and provenance with the weights. Do not remove
+   the catch-all exclusion. A trusted custom model URL can instead supply a voice
+   at runtime. See [voice asset research](VOICE_ASSETS.md).
 3. Run `python scripts/download_examples.py` for the human speech test clips.
 4. Build and test on Linux, including the intended Replicate GPU:
 

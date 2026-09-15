@@ -1,4 +1,4 @@
-# RVC v3 — Voice Conversion Service
+# RVC-v3-UI — Voice Conversion Service
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -59,7 +59,8 @@ rvc_models/
 ```
 
 Voice checkpoints are supplied separately, not redistributed in this source
-release. See [model setup](rvc_models/README.md) and [runtime trust limits](SECURITY.md).
+release. See [voice and audio licensing research](docs/VOICE_ASSETS.md),
+[model setup](rvc_models/README.md) and [runtime trust limits](SECURITY.md).
 
 ### 3. Convert audio
 
@@ -74,6 +75,28 @@ nesting is supported. Use `--runs 7` to measure repeated requests in one process
 the first result is retained at the requested output path.
 
 ## Try real speech examples
+
+The two input recordings are included in this repository:
+
+| Source | Listen / download | Duration |
+| --- | --- | --- |
+| Male narration — Garth Comira | [Male input WAV](examples/audio/male.wav) | 14.84 s |
+| Female narration — Heather Barnett | [Female input WAV](examples/audio/female.wav) | 13.91 s |
+
+These are original **inputs**. Here are actual conversions with downloaded,
+trained AISO RVC v2 female voices (model creator: 鶴乃; distributor: ちはや神社):
+
+| Source | HOWATTO output | SITTORI output |
+| --- | --- | --- |
+| Female | [Listen / download](examples/converted/female-to-aisohowatto.wav) | [Listen / download](examples/converted/female-to-aisosittori.wav) |
+| Male | [Listen / download](examples/converted/male-to-aisohowatto.wav) | [Listen / download](examples/converted/male-to-aisosittori.wav) |
+
+Both targets are Japanese-trained female speech voices, 40 kHz, with no pitch
+guidance or retrieval index. English quality needs listening review. Warm median
+conversion times were 0.158–0.163 seconds on a local RTX 4090, five runs per case
+with the first excluded; these are not Replicate/T4 or cold-start measurements.
+See [credits, model terms and reproduction](examples/README.md).
+The source-only ZIP omits audio; its users can fetch the same inputs below.
 
 ```sh
 python scripts/download_examples.py
@@ -101,7 +124,8 @@ Outputs and timing data are written to `benchmarks/speech/`, excluded from Git.
 
 ## Replicate / Cog
 
-Prepare model assets before building, then use a Linux NVIDIA Docker/Cog setup:
+Prepare model assets and explicitly allow an authorized voice in `.dockerignore`
+as described in the [publishing guide](docs/PUBLISHING.md), then use a Linux NVIDIA Docker/Cog setup:
 
 ```sh
 cog build
@@ -159,8 +183,8 @@ unverified. Newer Torch/CUDA stacks and compilation are future benchmark work.
   behavior retains reusable GPU allocations. Indexes are currently read per request.
 - Successful service calls retain a temporary output directory until the caller
   consumes it. CLI tools clean it up. Verify Cog's output lifecycle during soak tests.
-- Shared model assets and voice checkpoints are included in container builds even
-  though Git ignores them. Build public images with only intended assets.
+- Container exclusions allow the shared HuBERT/RMVPE files, but exclude all voice
+  directories by default. Explicitly include only voices authorized for deployment.
 
 ## Credits and license
 

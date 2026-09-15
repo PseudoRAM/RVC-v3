@@ -7,8 +7,13 @@ demo/
 rvc_models/**/*.pth
 rvc_models/**/*.pt
 rvc_models/**/*.index
+rvc_models/*
+!rvc_models/README.md
 /benchmarks/
-examples/audio/
+examples/audio/*
+!examples/audio/male.wav
+!examples/audio/female.wav
+examples/generated/
 dist/
 *.download
 .env

@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--female-voice", default="Sandy")
-    parser.add_argument("--male-voice", default="Rogan")
+    parser.add_argument("--female-voice", required=True, help="Authorized local female voice directory")
+    parser.add_argument("--male-voice", required=True, help="Authorized local male voice directory")
     parser.add_argument("--runs", type=int, default=5)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "benchmarks" / "speech")
     args = parser.parse_args()
