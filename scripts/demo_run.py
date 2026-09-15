@@ -44,7 +44,8 @@ if args.mode == "legacy":
 else:
     from service import VoiceService
     runner = VoiceService()
-    convert = lambda voice: runner.convert(audio_path, rvc_model=voice)
+    convert = lambda voice: runner.convert(audio_path, rvc_model=voice, pitch_change=0,
+                                            use_index=False, index_rate=0.5)
 
 import rvc
 original_infer = rvc.rvc_infer

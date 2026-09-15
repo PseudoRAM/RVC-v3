@@ -41,12 +41,20 @@ class ServiceTests(unittest.TestCase):
                 self.assertEqual(load_pitch.call_count, 1)
                 self.assertEqual(len(set(outputs)), 4)
                 args = infer.call_args.args
-                self.assertEqual(args[0], "")
+                self.assertTrue(args[0].endswith("voice.index"))
+                self.assertEqual(args[1], 0.75)
+                self.assertEqual(args[4], 4)
                 self.assertEqual(args[13], 256)
                 self.assertIs(args[14].model_rmvpe, pitch)
                 self.assertIs(args[15], hubert)
-                outputs.append(runner.convert("input.wav", rvc_model="A", use_index=True))
-                self.assertTrue(infer.call_args.args[0].endswith("voice.index"))
+                outputs.append(runner.convert("input.wav", rvc_model="A", use_index=False,
+                                              pitch_change=0, index_rate=0.2))
+                self.assertEqual(infer.call_args.args[0], "")
+                self.assertEqual(infer.call_args.args[1], 0.2)
+                self.assertEqual(infer.call_args.args[4], 0)
+                (Path(temp) / "rvc_models" / "B" / "voice.index").unlink()
+                outputs.append(runner.convert("input.wav", rvc_model="B"))
+                self.assertEqual(infer.call_args.args[0], "")
                 with self.assertRaises(ValueError):
                     runner.convert("input.wav", rvc_model="../escape")
         finally:

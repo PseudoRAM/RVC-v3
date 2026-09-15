@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Adopt the accepted Rogan listening preset as shared service, CLI and Cog API
+  defaults: pitch +4 semitones, retrieval enabled when available, index rate 0.75.
+- Add `--no-use-index` for explicit retrieval opt-out; per-request pitch and
+  retrieval overrides remain supported. Existing deployments need rebuilding
+  to adopt the new defaults.
+- Keep historical example and legacy comparison scripts on explicit recorded settings.
+
 ## 0.1.0 — RVC v3 service candidate
 
 - Retain HuBERT/RMVPE across requests and bound cached voice models.

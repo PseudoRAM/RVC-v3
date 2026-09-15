@@ -62,7 +62,7 @@ def main():
             synchronize()
             start = time.perf_counter()
             path = service.convert(ROOT / "examples" / "audio" / f"{source}.wav",
-                                   rvc_model=voice, pitch_change=pitch, use_index=indexed)
+                                   rvc_model=voice, pitch_change=pitch, use_index=indexed, index_rate=0.5)
             synchronize()
             durations.append(time.perf_counter() - start)
             try:

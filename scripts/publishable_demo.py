@@ -45,7 +45,8 @@ def main():
                 if torch.cuda.is_available():
                     torch.cuda.synchronize()
                 start = time.perf_counter()
-                output = service.convert(input_path, rvc_model=voice, use_index=is_vctk, pitch_change=pitch)
+                output = service.convert(input_path, rvc_model=voice, use_index=is_vctk,
+                                         pitch_change=pitch, index_rate=0.5)
                 if torch.cuda.is_available():
                     torch.cuda.synchronize()
                 times.append(time.perf_counter() - start)

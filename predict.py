@@ -6,6 +6,7 @@ from cog import BasePredictor, Input, Path
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "src"))
 from service import VoiceService
+from defaults import PITCH_CHANGE, INDEX_RATE, USE_INDEX
 
 
 class Predictor(BasePredictor):
@@ -17,15 +18,15 @@ class Predictor(BasePredictor):
         input_audio: Path = Input(description="Audio to convert."),
         rvc_model: str = Input(default="VCTK226", description="English voice: VCTK226 (male) or VCTK231 (female). A custom model URL overrides this selection."),
         custom_rvc_model_download_url: Optional[str] = Input(default=None, description="ZIP URL with one RVC checkpoint and optional index."),
-        pitch_change: float = Input(default=0, description="Pitch shift in semitones."),
-        index_rate: float = Input(default=0.5, ge=0, le=1),
+        pitch_change: float = Input(default=PITCH_CHANGE, description="Pitch shift in semitones. Default +4; set 0 to preserve source pitch."),
+        index_rate: float = Input(default=INDEX_RATE, ge=0, le=1),
         filter_radius: int = Input(default=3, ge=0, le=7),
         rms_mix_rate: float = Input(default=0.25, ge=0, le=1),
         f0_method: str = Input(default="rmvpe", choices=["rmvpe", "mangio-crepe"]),
         crepe_hop_length: int = Input(default=160, ge=1, le=1024, description="Pitch analysis hop in samples at 16 kHz."),
         protect: float = Input(default=0.33, ge=0, le=0.5),
         output_format: str = Input(default="wav", choices=["wav", "mp3"]),
-        use_index: bool = Input(default=False, description="Enable retrieval; changes audio and adds processing."),
+        use_index: bool = Input(default=USE_INDEX, description="Use the voice's retrieval index when available. Enabled by default."),
         refresh_custom_model: bool = Input(default=False, description="Redownload a cached custom voice."),
     ) -> Path:
         return Path(self.service.convert(

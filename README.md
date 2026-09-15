@@ -99,6 +99,20 @@ python scripts/convert.py input.wav output.wav --voice MyVoice
 python scripts/convert.py input.wav output.mp3 --voice MyVoice --pitch 3 --use-index
 ```
 
+The service, CLI and Cog API now default to **+4 semitones**, **retrieval enabled
+when an index is available**, and **index rate 0.75** (Rogan comparison B).
+RMVPE, protect 0.33 and RMS mix 0.25 remain unchanged. This listening-selected
+starting point is adjustable for each source and target voice; it was evaluated
+on the included male narration, not every vocal range.
+To retain source pitch and use the original no-index behavior:
+
+```sh
+python scripts/convert.py input.wav output.wav --voice MyVoice --pitch 0 --no-use-index
+```
+
+For the API, pass `pitch_change=0` and `use_index=false`. Checkpoints without an
+index still convert normally. Published examples retain their recorded settings.
+
 For a trusted custom model ZIP, provide `--model-url "https://.../voice.zip"`.
 A ZIP must contain exactly one `.pth` and at most one `.index` file. Directory
 nesting is supported. Use `--runs 7` to measure repeated requests in one process;
@@ -189,11 +203,11 @@ cog push r8.im/pseudoram/rvc-v3
 | `input_audio` | required | Source recording |
 | `rvc_model` | `VCTK226` | `VCTK226` male, `VCTK231` female, or another provisioned voice directory |
 | `custom_rvc_model_download_url` | none | Trusted voice ZIP URL, overrides directory selection |
-| `pitch_change` | 0 | Semitone shift |
+| `pitch_change` | 4 | Semitone shift; set 0 to preserve source pitch |
 | `f0_method` | `rmvpe` | `rmvpe` or `mangio-crepe` |
 | `crepe_hop_length` | 160 | Hop in samples at 16 kHz, for CREPE |
-| `use_index` | false | Enable retrieval if an index is present |
-| `index_rate` | 0.5 | Retrieval blend, used only when enabled |
+| `use_index` | true | Enable retrieval if an index is present |
+| `index_rate` | 0.75 | Retrieval blend, used only when enabled |
 | `protect` | 0.33 | Preserve breath/unvoiced consonants; 0.5 disables protection |
 | `rms_mix_rate` | 0.25 | Input/output loudness blend |
 | `filter_radius` | 3 | Legacy input; median filtering applies to harvest, not the exposed methods |
