@@ -171,18 +171,23 @@ Outputs and timing data are written to `benchmarks/speech/`, excluded from Git.
 
 ## Replicate / Cog
 
-Prepare model assets and explicitly allow an authorized voice in `.dockerignore`
-as described in the [publishing guide](docs/PUBLISHING.md), then use a Linux NVIDIA Docker/Cog setup:
+The container configuration includes the English VCTK226 male and VCTK231 female
+voices. Download their pinned weights before building on a Linux NVIDIA Docker/Cog setup:
 
 ```sh
+python scripts/download_models.py
+python scripts/download_english_voices.py
 cog build
-cog predict -i input_audio=@examples/audio/female.wav -i rvc_model=MyVoice -i output_format=wav
+cog predict -i input_audio=@examples/audio/male.wav -o male-output.wav
+cog predict -i input_audio=@examples/audio/female.wav -i rvc_model=VCTK231 -o female-output.wav
+cog login
+cog push r8.im/pseudoram/rvc-v3
 ```
 
 | Input | Default | Purpose |
 | --- | --- | --- |
 | `input_audio` | required | Source recording |
-| `rvc_model` | `CUSTOM` | Provisioned voice directory name |
+| `rvc_model` | `VCTK226` | `VCTK226` male, `VCTK231` female, or another provisioned voice directory |
 | `custom_rvc_model_download_url` | none | Trusted voice ZIP URL, overrides directory selection |
 | `pitch_change` | 0 | Semitone shift |
 | `f0_method` | `rmvpe` | `rmvpe` or `mangio-crepe` |
@@ -195,9 +200,10 @@ cog predict -i input_audio=@examples/audio/female.wav -i rvc_model=MyVoice -i ou
 | `output_format` | `wav` | `wav` or `mp3` |
 | `refresh_custom_model` | false | Redownload a cached custom model |
 
-Source releases contain no bundled default voice. Supply a valid directory or URL.
-The full [publishing guide](docs/PUBLISHING.md) covers a new GitHub repository and a
-separate Replicate candidate; no v3 endpoint is assumed to exist.
+Weights are separate downloads and are excluded from Git. The image includes only
+the shared models and the two explicitly allowed VCTK voices, with their notices
+in `examples/licenses/`. The [publishing guide](docs/PUBLISHING.md) covers the
+separate `pseudoram/rvc-v3` candidate.
 
 ## Performance and validation
 
@@ -216,9 +222,9 @@ python -m unittest discover -s tests -v
 ```
 
 The unit tests run without ML dependencies; CI also checks Python syntax on Linux
-and Windows. Native Windows GPU inference has run successfully. The candidate
-Linux Cog build, T4 timings, long-input behavior and production soak tests remain
-unverified. Newer Torch/CUDA stacks and compilation are future benchmark work.
+and Windows. Native Windows GPU inference and the [Linux Cog image smoke test](docs/CONTAINER_TEST.md)
+have run successfully on an RTX 4090. T4 timings, long-input behavior and production
+soak tests remain unverified. Newer Torch/CUDA stacks and compilation are future benchmark work.
 
 ## Serving behavior
 
@@ -230,8 +236,8 @@ unverified. Newer Torch/CUDA stacks and compilation are future benchmark work.
   behavior retains reusable GPU allocations. Indexes are currently read per request.
 - Successful service calls retain a temporary output directory until the caller
   consumes it. CLI tools clean it up. Verify Cog's output lifecycle during soak tests.
-- Container exclusions allow the shared HuBERT/RMVPE files, but exclude all voice
-  directories by default. Explicitly include only voices authorized for deployment.
+- Container exclusions allow HuBERT/RMVPE and the VCTK226/VCTK231 checkpoints and
+  indexes. Other local voice directories are excluded.
 
 ## Credits and license
 

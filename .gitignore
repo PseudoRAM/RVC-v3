@@ -4,6 +4,7 @@ __pycache__/
 .venv-wsl/
 demo/
 .cache/
+.cog/
 rvc_models/**/*.pth
 rvc_models/**/*.pt
 rvc_models/**/*.index

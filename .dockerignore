@@ -4,6 +4,7 @@
 .venv-wsl
 demo
 .cache
+.cog
 tests
 benchmarks
 *.wav
@@ -21,3 +22,9 @@ rvc_models/**
 !rvc_models/hubert_base.pt
 !rvc_models/rmvpe.pt
 !rvc_models/README.md
+!rvc_models/VCTK226/
+!rvc_models/VCTK226/*.pth
+!rvc_models/VCTK226/*.index
+!rvc_models/VCTK231/
+!rvc_models/VCTK231/*.pth
+!rvc_models/VCTK231/*.index

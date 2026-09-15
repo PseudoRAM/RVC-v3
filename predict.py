@@ -1,9 +1,10 @@
 import sys
-from pathlib import Path
+import pathlib
+from typing import Optional
 
-from cog import BasePredictor, Input, Path as CogPath
+from cog import BasePredictor, Input, Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "src"))
 from service import VoiceService
 
 
@@ -13,9 +14,9 @@ class Predictor(BasePredictor):
 
     def predict(
         self,
-        input_audio: CogPath = Input(description="Audio to convert."),
-        rvc_model: str = Input(default="CUSTOM", description="Provisioned voice directory name, or supply a custom model URL."),
-        custom_rvc_model_download_url: str = Input(default=None, description="ZIP URL with one RVC checkpoint and optional index."),
+        input_audio: Path = Input(description="Audio to convert."),
+        rvc_model: str = Input(default="VCTK226", description="English voice: VCTK226 (male) or VCTK231 (female). A custom model URL overrides this selection."),
+        custom_rvc_model_download_url: Optional[str] = Input(default=None, description="ZIP URL with one RVC checkpoint and optional index."),
         pitch_change: float = Input(default=0, description="Pitch shift in semitones."),
         index_rate: float = Input(default=0.5, ge=0, le=1),
         filter_radius: int = Input(default=3, ge=0, le=7),
@@ -26,8 +27,8 @@ class Predictor(BasePredictor):
         output_format: str = Input(default="wav", choices=["wav", "mp3"]),
         use_index: bool = Input(default=False, description="Enable retrieval; changes audio and adds processing."),
         refresh_custom_model: bool = Input(default=False, description="Redownload a cached custom voice."),
-    ) -> CogPath:
-        return CogPath(self.service.convert(
+    ) -> Path:
+        return Path(self.service.convert(
             input_audio, rvc_model, custom_rvc_model_download_url, refresh_custom_model,
             pitch_change, index_rate, filter_radius, rms_mix_rate, protect,
             f0_method, crepe_hop_length, output_format, use_index))

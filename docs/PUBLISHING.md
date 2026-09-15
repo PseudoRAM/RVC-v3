@@ -26,8 +26,11 @@ and Windows. It does not claim GPU, audio-quality, or container validation.
 ## Replicate
 
 1. Install Docker, NVIDIA GPU support and [Cog](https://github.com/replicate/cog).
-2. Run `python scripts/download_models.py` and provision authorized voice weights.
-   Voice directories are excluded from the image by default. For a voice whose
+2. Run `python scripts/download_models.py` and
+   `python scripts/download_english_voices.py`. The image explicitly includes
+   VCTK226 (male, API default) and VCTK231 (female), with their indexes. Their
+   license and attribution notices are included from `examples/licenses/`.
+   Other voice directories are excluded. For an additional voice whose
    model, source and speaker permissions cover your deployment, append these exact
    exceptions to `.dockerignore` (replace `MyVoice` with its directory name):
 
@@ -44,25 +47,27 @@ and Windows. It does not claim GPU, audio-quality, or container validation.
 
 ```sh
 cog build
-cog predict -i input_audio=@examples/audio/female.wav -i rvc_model=MyVoice -i output_format=wav
+cog predict -i input_audio=@examples/audio/male.wav -o male-output.wav
+cog predict -i input_audio=@examples/audio/female.wav -i rvc_model=VCTK231 -i use_index=true -o female-output.wav
 ```
 
 5. Review the built image's voice assets: Git ignores do not control the container.
    The working folder may contain private/local voices that must not be included in
    a public image. Build from a clean source extraction with only intended assets.
-6. Create a separate candidate model in your Replicate account, for example
-   `pseudoram/rvc-v3`, then publish from that clean build directory:
+6. Publish to the separate candidate `pseudoram/rvc-v3` from the reviewed build
+   directory. This destination is configured in `cog.yaml`:
 
 ```sh
 cog login
 cog push r8.im/pseudoram/rvc-v3
 ```
 
-Neither destination is configured in the source, and no publish workflow runs
-automatically. The existing `pseudoram/rvc-v2` deployment is unaffected.
+No publish workflow runs automatically. The existing `pseudoram/rvc-v2`
+deployment is unaffected.
 
 The Python 3.10/CUDA 11.8 container configuration is a candidate. Native Windows
-inference has been tested; a Linux Cog build and T4 inference still need validation.
+inference and a [Linux Cog build with GPU smoke tests](CONTAINER_TEST.md) have
+passed locally on an RTX 4090. T4 inference still needs validation.
 The requirements pin direct dependencies, not a full Linux transitive lock.
 
 Before switching clients, compare human speech and singing, short/long clips,

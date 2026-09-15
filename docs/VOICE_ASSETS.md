@@ -89,8 +89,9 @@ embeddings are not drop-in replacements for RVC `.pth` checkpoints.
 
 - Git ignores the entire local model directory except its README, including ZIPs.
 - The source release packager excludes model binaries and audio.
-- `.dockerignore` excludes voice directories; only HuBERT, RMVPE and the README
-  are allowed by default. Those shared models retain their own upstream terms.
+- `.dockerignore` allows HuBERT, RMVPE, the README and the VCTK226/VCTK231
+  checkpoints and indexes. Other voice directories are excluded. License and
+  attribution notices in `examples/licenses/` accompany the image.
 - Demo/benchmark commands require explicitly named voices; no celebrity defaults.
 - Existing local weights are retained. Nothing here removes weights from older
   published repositories, Git history or existing Replicate versions.
@@ -98,6 +99,7 @@ embeddings are not drop-in replacements for RVC `.pth` checkpoints.
   training provenance, speaker permission evidence and required credits. Follow
   [publishing instructions](PUBLISHING.md) to allow that specific directory.
 
-The Linux Cog image has not been built in this environment; inspect its actual
-contents before publication. The two AISO replacement targets were tested locally;
+The Linux Cog image was built and its actual model files verified against their
+checksums; it includes only the shared models and the two VCTK targets. See the
+[container validation](CONTAINER_TEST.md). The two AISO replacement targets were tested locally;
 the male Matsukaze target remains untested. No new model training was performed.

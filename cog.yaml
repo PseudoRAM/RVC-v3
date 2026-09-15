@@ -1,4 +1,5 @@
 # Initial compatibility baseline. Upgrade the ML stack in a measured follow-up.
+image: "r8.im/pseudoram/rvc-v3"
 build:
   gpu: true
   cuda: "11.8"
