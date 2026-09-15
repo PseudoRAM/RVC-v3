@@ -5,7 +5,8 @@
 The prepared repository contains code, documentation and dependency-free tests.
 Model weights, scratch generated audio, caches, environments and private credentials
 are ignored. Two attributed input WAVs in `examples/audio/` and four selected AISO
-outputs in `examples/converted/` are available for Git.
+outputs in `examples/converted/`, plus four English-trained VCTK outputs in
+`examples/english/`, are available for Git.
 `python scripts/package_source.py` creates `dist/rvc-v3-source.zip`
 using an allowlist, suitable for a new repository or source release.
 

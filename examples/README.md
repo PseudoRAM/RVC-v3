@@ -1,5 +1,8 @@
 # Human speech test inputs
 
+For English-trained male and female RVC v2 targets, see the
+[English before/after examples](ENGLISH.md). The AISO examples below remain for comparison.
+
 ## Listen to the inputs
 
 - [Male input WAV — Garth Comira, 14.84 seconds](audio/male.wav)

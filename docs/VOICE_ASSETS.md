@@ -22,6 +22,27 @@ inputs, not a claim of permission to train and market clones of the narrators.
 
 ## Trained RVC v2 models found
 
+### English-trained replacement pair
+
+[Nekochu/RVC-VCTK_Voice-sample](https://huggingface.co/Nekochu/RVC-VCTK_Voice-sample)
+provides trained RVC voices from the English VCTK corpus, including **p226 (male)**
+and **p231 (female)**. We selected the `rmvpe/` `.pth` variants and matching v2
+indexes at revision `005c2f948ee9dafd7e3aa7f261b4c3a24beebeef`. The repository
+also contains Beatrice models; those are a different architecture and are not used.
+
+The model card declares Apache 2.0. The [original VCTK release](https://doi.org/10.7488/ds/2645)
+is an English voice-cloning corpus under CC BY 4.0. Retain Nekochu's credit, the
+Apache license and VCTK attribution to Junichi Yamagishi, Christophe Veaux and
+Kirsten MacDonald, University of Edinburgh CSTR (2019, version 0.92). Local copies
+of the published model card and licenses are in `examples/licenses/`.
+This is documented dataset/model provenance, not independent verification of
+individual speaker releases or a warranty about every downstream use. Do not
+attempt to identify anonymous speakers or imply their endorsement.
+Both checkpoints passed restricted weights-only inspection and twenty local GPU
+conversions. Four retained [English examples](../examples/ENGLISH.md) are linked
+from the README; SHA256-pinned downloads are available via
+`scripts/download_english_voices.py`.
+
 | Model | Terms and source | Status |
 | --- | --- | --- |
 | AISO HOWATTO and SITTORI, female | [Publisher](https://booth.pm/ja/items/4701666) explicitly states MIT for model files and permission from the ten contributing speakers for AI use; [public checkpoint mirror](https://huggingface.co/wok000/vcclient_model/tree/c46962577db8cf3fba2b3fc3526af98eb6611840/rvc_v2_chihaya_jinja) | Downloaded; restricted weights-only inspection confirms v2, 768 features, 40 kHz, no pitch guidance. Four examples generated successfully. |
@@ -60,7 +81,7 @@ copyright license alone should not be represented as that release.
 | [Tokina Shigure sample](https://huggingface.co/wok000/vcclient_model/raw/main/rvc_v2_alpha/tokina_shigure/terms_of_use.txt) | Japanese boy-like character voice, documented performer/corpus; this sample is VCClient-only. Original model and corpus have separate conditions | Not cleared for this service |
 | [Razer112 Public Models license](https://huggingface.co/Razer112/Public_Models/blob/9c322dca1a2bfac28788e89146324878045ecb71/LICENSE) | Allows some commercial use but explicitly prohibits redistribution without written permission | Do not bundle based on the repository's license tag |
 
-The trained models found above are Japanese, not a verified English-trained pair.
+The AISO/Matsukaze models are Japanese; the VCTK pair above is English-trained.
 TTS voices and speaker
 embeddings are not drop-in replacements for RVC `.pth` checkpoints.
 

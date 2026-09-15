@@ -1,0 +1,102 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.0.1+cu118",
+  "cases": [
+    {
+      "source": "female",
+      "voice": "VCTK226",
+      "version": "v2",
+      "f0": true,
+      "pitch_change": -8,
+      "use_index": true,
+      "index_rate": 0.5,
+      "output": "examples/english/female-to-vctk226.wav",
+      "checkpoint_sha256": "0a1d55e17cf08c922596710e58a0862cb54c8ea2ab037a5fc1f85c5f08ab4b18",
+      "input_sha256": "1dd8150dc980db2879b7ddcc51a0eaf3e42e59d44d2d6a63f247426680e2bd95",
+      "sample_rate": 40000,
+      "duration_seconds": 13.9,
+      "peak": 0.42938232421875,
+      "clipped_samples": 0,
+      "all_seconds": [
+        1.5370152,
+        0.446847,
+        0.3810001999999999,
+        0.3905617000000001,
+        0.38888869999999987
+      ],
+      "warm_median_seconds": 0.3897252
+    },
+    {
+      "source": "male",
+      "voice": "VCTK226",
+      "version": "v2",
+      "f0": true,
+      "pitch_change": 0,
+      "use_index": true,
+      "index_rate": 0.5,
+      "output": "examples/english/male-to-vctk226.wav",
+      "checkpoint_sha256": "0a1d55e17cf08c922596710e58a0862cb54c8ea2ab037a5fc1f85c5f08ab4b18",
+      "input_sha256": "aac819c87e30d0b88bdfe57b32efd8cc1485ed2c5e753affb4b7df21ba6519ee",
+      "sample_rate": 40000,
+      "duration_seconds": 14.82,
+      "peak": 0.87255859375,
+      "clipped_samples": 0,
+      "all_seconds": [
+        0.5481681999999992,
+        0.39942809999999973,
+        0.40500329999999884,
+        0.40971310000000116,
+        0.38846260000000044
+      ],
+      "warm_median_seconds": 0.4022156999999993
+    },
+    {
+      "source": "female",
+      "voice": "VCTK231",
+      "version": "v2",
+      "f0": true,
+      "pitch_change": 0,
+      "use_index": true,
+      "index_rate": 0.5,
+      "output": "examples/english/female-to-vctk231.wav",
+      "checkpoint_sha256": "12f819e129c6e48779439e491b85593b8819d094f751c3515ea13be6bd8b5a59",
+      "input_sha256": "1dd8150dc980db2879b7ddcc51a0eaf3e42e59d44d2d6a63f247426680e2bd95",
+      "sample_rate": 40000,
+      "duration_seconds": 13.9,
+      "peak": 0.458404541015625,
+      "clipped_samples": 0,
+      "all_seconds": [
+        0.7781539000000013,
+        0.3999453000000006,
+        0.4036924000000006,
+        0.38854390000000016,
+        0.38515929999999976
+      ],
+      "warm_median_seconds": 0.3942446000000004
+    },
+    {
+      "source": "male",
+      "voice": "VCTK231",
+      "version": "v2",
+      "f0": true,
+      "pitch_change": 8,
+      "use_index": true,
+      "index_rate": 0.5,
+      "output": "examples/english/male-to-vctk231.wav",
+      "checkpoint_sha256": "12f819e129c6e48779439e491b85593b8819d094f751c3515ea13be6bd8b5a59",
+      "input_sha256": "aac819c87e30d0b88bdfe57b32efd8cc1485ed2c5e753affb4b7df21ba6519ee",
+      "sample_rate": 40000,
+      "duration_seconds": 14.82,
+      "peak": 0.915252685546875,
+      "clipped_samples": 0,
+      "all_seconds": [
+        0.4431649999999987,
+        0.3982677999999993,
+        0.39300099999999993,
+        0.39152339999999874,
+        0.3976736999999986
+      ],
+      "warm_median_seconds": 0.39533734999999925
+    }
+  ]
+}

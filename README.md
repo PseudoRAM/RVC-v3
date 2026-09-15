@@ -83,7 +83,24 @@ The two input recordings are included in this repository:
 | Male narration — Garth Comira | [Male input WAV](examples/audio/male.wav) | 14.84 s |
 | Female narration — Heather Barnett | [Female input WAV](examples/audio/female.wav) | 13.91 s |
 
-These are original **inputs**. Here are actual conversions with downloaded,
+### English-trained RVC v2 targets
+
+The **VCTK p226 male** and **VCTK p231 female** checkpoints from Nekochu are
+trained on English speech. Both are RVC v2, 40 kHz, with pitch guidance.
+
+| Source | Male target p226 | Female target p231 |
+| --- | --- | --- |
+| Male narration | [Listen / download](examples/english/male-to-vctk226.wav) | [Listen / download](examples/english/male-to-vctk231.wav) |
+| Female narration | [Listen / download](examples/english/female-to-vctk226.wav) | [Listen / download](examples/english/female-to-vctk231.wav) |
+
+Warm medians: **0.39–0.40 s** for these roughly 14-second clips on a local RTX 4090,
+including retrieval at 0.5. Same-gender examples use zero pitch shift; cross-gender
+examples use +8/-8 semitones as comparison settings, not universal recommendations.
+See [English example credits, model links and reproduction](examples/ENGLISH.md).
+
+### Japanese-trained comparison targets
+
+Here are actual conversions with downloaded,
 trained AISO RVC v2 female voices (model creator: 鶴乃; distributor: ちはや神社):
 
 | Source | HOWATTO output | SITTORI output |
