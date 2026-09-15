@@ -1,4 +1,5 @@
 """Check that omitted settings and explicit overrides reach the service."""
+import ast
 import importlib.util
 from pathlib import Path
 import sys
@@ -18,6 +19,20 @@ def load_module(name, path):
 
 
 class EntryPointDefaultsTests(unittest.TestCase):
+    def test_cog_schema_defaults_are_literals_matching_service(self):
+        defaults = load_module('shared_defaults', ROOT / 'src/defaults.py')
+        expected = {'pitch_change': defaults.PITCH_CHANGE,
+                    'index_rate': defaults.INDEX_RATE, 'use_index': defaults.USE_INDEX}
+        tree = ast.parse((ROOT / 'predict.py').read_text())
+        method = next(node for node in ast.walk(tree)
+                      if isinstance(node, ast.FunctionDef) and node.name == 'predict')
+        for arg, value in zip(method.args.args[-len(method.args.defaults):], method.args.defaults):
+            if arg.arg in expected:
+                literal = next(item.value for item in value.keywords if item.arg == 'default')
+                self.assertIsInstance(literal, ast.Constant, arg.arg)
+                self.assertEqual(literal.value, expected.pop(arg.arg))
+        self.assertFalse(expected)
+
     def test_cli_defaults_and_explicit_legacy_override(self):
         cli = load_module('convert_cli', ROOT / 'scripts/convert.py')
         for options, expected in [([], (4, .75, True)),
