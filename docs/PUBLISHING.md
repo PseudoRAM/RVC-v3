@@ -67,7 +67,9 @@ deployment is unaffected.
 
 The Python 3.10/CUDA 11.8 container configuration is a candidate. Native Windows
 inference and a [Linux Cog build with GPU smoke tests](CONTAINER_TEST.md) have
-passed locally on an RTX 4090. T4 inference still needs validation.
+passed locally on an RTX 4090. The image was also pushed successfully to
+`pseudoram/rvc-v3`, and four hosted T4 smoke requests passed, including confirmed
+voice-cache reuse. See the validation report for the exact version and timings.
 The requirements pin direct dependencies, not a full Linux transitive lock.
 
 Before switching clients, compare human speech and singing, short/long clips,

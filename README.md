@@ -223,8 +223,11 @@ python -m unittest discover -s tests -v
 
 The unit tests run without ML dependencies; CI also checks Python syntax on Linux
 and Windows. Native Windows GPU inference and the [Linux Cog image smoke test](docs/CONTAINER_TEST.md)
-have run successfully on an RTX 4090. T4 timings, long-input behavior and production
-soak tests remain unverified. Newer Torch/CUDA stacks and compilation are future benchmark work.
+have run successfully on an RTX 4090. Four hosted T4 requests also passed; an immediate
+female-voice repeat took 0.922 seconds in the service (1.4 seconds reported by Replicate)
+with retrieval enabled. See the same report for inputs, settings and first-load results.
+Cloud cold-start benchmarking, long-input behavior and production soak tests remain
+unverified. Newer Torch/CUDA stacks and compilation are future benchmark work.
 
 ## Serving behavior
 
